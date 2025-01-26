@@ -91,6 +91,7 @@ __global__ void matmul_tiled(float* A, float* B, float* C, size_t M, size_t N, s
         }
         __syncthreads();
         
+        #pragma unroll
         for (int k=0; k<TILE_SIZE; ++k){
             temp += A_tile[tile_row][k] * B_tile[k][tile_col];
         }
